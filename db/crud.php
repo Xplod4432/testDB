@@ -6,25 +6,30 @@
             $this->db = $conn;
         }
 
-        public function insertAttendees($fname, $lname, $dob, $email,$contact){
+        public function insertAttendees($fname, $lname, $dob, $email,$contact,$avatar_path){
             try {
-                $sql = "INSERT INTO `attendee`(`firstname`, `lastname`, `dateofbirth`, `emailaddress`, `contactnumber`) VALUES (:fname,:lname,:dob,:email,:contact)";
+                // define sql statement to be executed
+                $sql = "INSERT INTO attendee (firstname,lastname,dateofbirth,emailaddress,contactnumber,avatar_path) VALUES (:fname,:lname,:dob,:email,:contact,:avatar_path)";
+                //prepare the sql statement for execution
                 $stmt = $this->db->prepare($sql);
-                
+                // bind all placeholders to the actual values
                 $stmt->bindparam(':fname',$fname);
                 $stmt->bindparam(':lname',$lname);
                 $stmt->bindparam(':dob',$dob);
                 $stmt->bindparam(':email',$email);
                 $stmt->bindparam(':contact',$contact);
+                $stmt->bindparam(':avatar_path',$avatar_path);
 
+                // execute statement
                 $stmt->execute();
                 return true;
-
+        
             } catch (PDOException $e) {
                 echo $e->getMessage();
                 return false;
             }
         }
+
         
         public function editAttendee($id,$fname, $lname, $dob, $email,$contact){
             try{ 
