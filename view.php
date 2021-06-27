@@ -22,9 +22,6 @@
         <h5 class="card-title">
             <?php echo $result['firstname'] . ' ' . $result['lastname'];  ?>
         </h5>
-        <h6 class="card-subtitle mb-2 text-muted">
-            <?php echo $result['name'];  ?>    
-        </h6>
         <p class="card-text">
             Date Of Birth: <?php echo $result['dateofbirth'];  ?>
         </p>
